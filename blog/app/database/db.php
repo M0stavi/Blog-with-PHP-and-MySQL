@@ -21,7 +21,7 @@ function executeQuery($sql,$data){
     $stmt = $conn->prepare($sql);
 
     $values = array_values($data);
-    echo $values[1];
+    // echo $values[1];
     $types = str_repeat('s', count($values));
     $stmt->bind_param($types, ...$values);
 
@@ -192,7 +192,7 @@ $data = [
     'password' => 'password'
 ];
 
-$users = update('users', 6, $data);
+$users = delete('users', 6);
 ss($users);
 
 
