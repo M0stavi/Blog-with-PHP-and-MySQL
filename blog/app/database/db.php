@@ -152,14 +152,47 @@ function create($table, $data)
     return $mid;
 }
 
+
+function update($table, $id, $data)
+{
+    global $conn;
+    $sql = "UPDATE $table SET ";
+
+    $i = 0;
+    foreach ($data as $key => $value) {
+        if ($i === 0) {
+            $sql = $sql . " $key=?";
+        } else {
+            $sql = $sql . ", $key=?";
+        }
+        $i++;
+    }
+
+    $sql = $sql . " WHERE id=?";
+    $data['id'] = $id;
+    $stmt = executeQuery($sql, $data);
+    return $stmt->affected_rows;
+}
+
+
+function delete($table, $id)
+{
+    global $conn;
+    $sql = "DELETE FROM $table WHERE id=?";
+
+    $stmt = executeQuery($sql, ['id' => $id]);
+    return $stmt->affected_rows;
+}
+
 $data = [
+    
+    'username' => 'gg',
     'admin' => 1,
-    'username' => 'korim',
     'email' => 'korim@gmail.com',
     'password' => 'password'
 ];
 
-$users = create('users', $data);
+$users = update('users', 6, $data);
 ss($users);
 
 
