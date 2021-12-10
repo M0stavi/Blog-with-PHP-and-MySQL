@@ -184,16 +184,7 @@ function delete($table, $id)
     return $stmt->affected_rows;
 }
 
-$data = [
-    
-    'username' => 'gg',
-    'admin' => 1,
-    'email' => 'korim@gmail.com',
-    'password' => 'password'
-];
 
-$users = delete('users', 6);
-ss($users);
 
 
 ?>
