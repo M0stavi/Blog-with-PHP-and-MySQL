@@ -1,4 +1,7 @@
-<?php include("path.php") ?>
+<?php include("path.php");
+	include(ROOT_PATH . "/app/database/db.php");
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +24,10 @@
 	<!-- include header here -->
 
 	<?php include(ROOT_PATH . "/app/includes/header.php");   ?>
+
+	<?php include(ROOT_PATH . "/app/includes/messages.php"); ?>
+
+	
 
 	<div class="page-wrapper">
 		<div class="post-slider">

@@ -1,9 +1,14 @@
-<?php include("path.php") ?>
+<?php include("path.php"); ?>
 
 <?php include(ROOT_PATH . "/app/controllers/users.php" ); ?>
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
+
+
 
 <head>
   <meta charset="UTF-8">
@@ -31,25 +36,24 @@
     <form action="register.php" method="post">
       <h2 class="form-title">Register</h2>
 
-      <!-- <div class="msg error">
-        <li>Username required</li>
-      </div> -->
-
-    
+      <!-- include helpers here -->
+      <?php include(ROOT_PATH . "/app/helpers/formErrors.php");   ?>
+      
+      <div>
+        <label>Username</label>
+        <input type="text" name="username" value="<?php echo $username; ?>" class="text-input" >
+      </div>
       <div>
         <label>Email</label>
-        <br>
-        <input type="email" name="email" class="text-input">
+        <input type="email" name="email"  value="<?php echo $email; ?>" class="text-input">
       </div>
       <div>
         <label>Password</label>
-        <br>
-        <input type="password" name="password" class="text-input">
+        <input type="password" name="password"  value="<?php echo $password; ?>" class="text-input">
       </div>
       <div>
-        <label>Confirm</label>
-        <br>
-        <input type="password" name="passwordConf" class="text-input">
+        <label>Password Confirmation</label>
+        <input type="password" name="passwordConf"  value="<?php echo $passwordConf; ?>" class="text-input">
       </div>
       <div>
         <button type="submit" name="register-btn" class="btn btn-big">Register</button>

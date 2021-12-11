@@ -1,5 +1,11 @@
 <?php
 
+// session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require('connect.php');
 
 
@@ -26,7 +32,7 @@ function executeQuery($sql,$data){
     $stmt->bind_param($types, ...$values);
 
     $stmt->execute();
-    echo "print";
+    // echo "print";
     return $stmt;
 
 }
