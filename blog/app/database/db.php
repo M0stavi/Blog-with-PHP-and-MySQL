@@ -141,7 +141,7 @@ function selectOne($table, $conditions){
 function create($table, $data)
 {
     global $conn;
-    $sql = "INSERT INTO users SET ";
+    $sql = "INSERT INTO $table SET ";
 
     $i = 0;
     foreach ($data as $key => $value) {
@@ -157,6 +157,7 @@ function create($table, $data)
     $mid = $stmt->insert_id;
     return $mid;
 }
+
 
 
 function update($table, $id, $data)
