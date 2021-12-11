@@ -1,5 +1,6 @@
 <?php include("../../path.php");
 	// include(ROOT_PATH . "/app/database/db.php");
+    include(ROOT_PATH . "/app/controllers/topics.php" );
 
 ?>
 <!DOCTYPE html>
@@ -58,22 +59,14 @@
                     <th colspan = "2">Action</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Poetry</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                        
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Life Lessons</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                       
-
-                    </tr>
+                <?php foreach ($topics as $key => $topic): ?>
+                               <tr>
+                                    <td><?php echo $key + 1; ?></td>
+                                    <td><?php echo $topic['name']; ?></td>
+                                    <td><a href="edit.php?id=<?php echo $topic['id']; ?>" class="edit">edit</a></td>
+                                    <td><a href="index.php?del_id=<?php echo $topic['id']; ?>" class="delete">delete</a></td>
+                                </tr> 
+                            <?php endforeach; ?>
                 </tbody>
             </table>
 

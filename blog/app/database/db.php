@@ -44,7 +44,7 @@ function selectAll($table, $conditions = []){
     global $conn;
 
 
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT * FROM $table";
 
     if(empty($conditions)){
         $stmt = $conn->prepare($sql);
@@ -97,7 +97,7 @@ function selectOne($table, $conditions){
     global $conn;
 
 
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT * FROM $table";
 
     
         
@@ -180,7 +180,6 @@ function update($table, $id, $data)
     $stmt = executeQuery($sql, $data);
     return $stmt->affected_rows;
 }
-
 
 function delete($table, $id)
 {
