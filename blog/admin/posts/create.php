@@ -1,5 +1,6 @@
 <?php include("../../path.php");
 	// include(ROOT_PATH . "/app/database/db.php");
+     include(ROOT_PATH . "/app/controllers/posts.php" );
 
 ?>
 <!DOCTYPE html>
@@ -13,7 +14,6 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Candal&family=Lora&display=swap" rel="stylesheet">
-
 	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
 
     <link rel="stylesheet" type="text/css" href="../../assets/css/admin.css">
@@ -23,16 +23,43 @@
 <body>
 
 
-	<!-- admin header here -->
-
-    <?php include(ROOT_PATH . "/app/includes/adminHeader.php"); ?>
+	<header>
+		<div class = "logo">
+			<h1 class = "logo-text"><span>AB</span>CD</h1>
+			
+		</div>
+	<i class="fa fa-bars menu-toggle"></i>	
+	<ul class="nav">
+		
+		<li>
+			<a href="#">
+				<i class="fa fa-user"></i>
+				 User name
+				<i class="fa fa-chevron-down" style = "font-size: .8em;"></i> 
+			</a>
+			<ul>
+				
+				<li><a href="#" class="logout"> Logout</a> </li>
+			</ul> 
+		</li>
+		
+	</ul>	
+	</header>
 
 	<div class="admin-wrapper">
 
 
     <!-- left sidebar -->
 
-    <?php include(ROOT_PATH . "/app/includes/adminSidebar.php"); ?>
+    <div class="left-sidebar">
+        <ul>
+            <li><a href="index.php">Manage Posts</a></li>
+            <li><a href="../users/index.php">Manage Users</a></li>
+            <li><a href="../topics/index.php">Manage Topics</a></li>
+
+        </ul>
+
+    </div>
 
     <!-- left sidebar -->
 		
@@ -48,16 +75,19 @@
 
         <div class="content">
 
-            <h2 class="page-title">Add Posts</h2>
+            <h2 class="page-title">Manage Posts</h2>
 
-            <form action="create.php" method="post">
+            <?php include(ROOT_PATH . '/app/helpers/formErrors.php'); ?>
+
+
+            <form action="create.php" method="post" enctype="multipart/form-data">
                 <div>
                     <label>Title</label>
-                    <input type="text" name="title" class="text-input">
+                    <input type="text" name="title" value="<?php echo $title ?>" class="text-input">
                 </div>
                 <div>
                     <label>Body</label>
-                    <textarea name="body" id="body"></textarea>
+                    <textarea name="body" value="<?php echo $body ?>" id="body"></textarea>
                 </div>
 
                 <div>
@@ -66,19 +96,42 @@
                 </div>
                 <div>
                     <label>Topic</label>
-                    <select name="topic" class="text-input">
-                        <option value="Poetry">Poetry</option>
-                        <option value="Life Lessons">Life Lessons</option>
+                    <select name="topic_id" class="text-input">
+                    <option value=""></option>
+                    <?php foreach ($topics as $key => $topic): ?>
+                        <?php if (!empty($topic_id) && $topic_id == $topic['id'] ): ?>
+                            <option selected value="<?php echo $topic['id'] ?>"><?php echo $topic['name'] ?></option>
+                        <?php else: ?>
+                            <option value="<?php echo $topic['id'] ?>"><?php echo $topic['name'] ?></option>
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
                     </select>
                 </div>
                 <div>
-                   <button type="submit" class="btn btn-big">Add Post</button>
+                    <?php if (empty($published)): ?>
+                        <label>
+                            <input type="checkbox" name="published">
+                            Publish
+                        </label>
+                    <?php else: ?>
+                        <label>
+                            <input type="checkbox" name="published" checked>
+                            Publish
+                        </label>
+                    <?php endif; ?>
+                    
+
+                </div>
+                <div>
+                   <button type="submit" name="add-post" class="btn btn-big">Add Post</button>
                 </div>
             </form>
 
         </div>
 
     </div>
+
     <!-- admin content -->
 
 	</div>
@@ -98,6 +151,7 @@
     <!-- jquery  -->
 
 	<script src="../../assets/js/script.js"></script>
+
 
 	
 
