@@ -1,4 +1,14 @@
-<?php include("path.php") ?>
+<?php include("path.php"); ?>
+<?php include(ROOT_PATH . '/app/controllers/posts.php');
+
+if (isset($_GET['id'])) {
+  $post = selectOne('posts', ['id' => $_GET['id']]);
+}
+$topics = selectAll('topics');
+$posts = selectAll('posts', ['published' => 1]);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,17 +27,13 @@
   <!-- Custom Styling -->
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <title>Single Post</title>
+  <title><?php echo $post['title']; ?> | AwaInspires</title>
 </head>
 
 <body>
-  <!-- Facebook Page Plugin SDK -->
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous"
-    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=285071545181837&autoLogAppEvents=1">
-  </script>
+  
 
- <?php include("app/includes/header.php");   ?>
+  <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
 
   <!-- Page Wrapper -->
   <div class="page-wrapper">
@@ -38,69 +44,34 @@
       <!-- Main Content Wrapper -->
       <div class="main-content-wrapper">
         <div class="main-content single">
-          <h1 class="post-title">This is the title of the Post</h1>
+          <h1 class="post-title"><?php echo $post['title']; ?></h1>
 
           <div class="post-content">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione modi error rerum possimus animi! Eos!
-            </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam placeat at molestias vitae! Ipsa
-              repudiandae praesentium nobis nesciunt, iusto pariatur tenetur commodi! Iste sequi placeat dolores nulla,
-              expedita voluptas officiis.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, facere iste! Ex quia hic recusandae
-              optio velit ad consectetur totam sed sunt quasi voluptates, sequi molestias alias sapiente iste asperiores
-              nostrum est voluptatem quae earum accusantium. Totam dolorem possimus rem!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, nisi.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione modi error rerum possimus animi! Eos!
-            </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam placeat at molestias vitae! Ipsa
-              repudiandae praesentium nobis nesciunt, iusto pariatur tenetur commodi! Iste sequi placeat dolores nulla,
-              expedita voluptas officiis.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, facere iste! Ex quia hic recusandae
-              optio velit ad consectetur totam sed sunt quasi voluptates, sequi molestias alias sapiente iste asperiores
-              nostrum est voluptatem quae earum accusantium. Totam dolorem possimus rem!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, nisi.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione modi error rerum possimus animi! Eos!
-            </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam placeat at molestias vitae! Ipsa
-              repudiandae praesentium nobis nesciunt, iusto pariatur tenetur commodi! Iste sequi placeat dolores nulla,
-              expedita voluptas officiis.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, facere iste! Ex quia hic recusandae
-              optio velit ad consectetur totam sed sunt quasi voluptates, sequi molestias alias sapiente iste asperiores
-              nostrum est voluptatem quae earum accusantium. Totam dolorem possimus rem!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, nisi.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione modi error rerum possimus animi! Eos!
-            </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam placeat at molestias vitae! Ipsa
-              repudiandae praesentium nobis nesciunt, iusto pariatur tenetur commodi! Iste sequi placeat dolores nulla,
-              expedita voluptas officiis.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, facere iste! Ex quia hic recusandae
-              optio velit ad consectetur totam sed sunt quasi voluptates, sequi molestias alias sapiente iste asperiores
-              nostrum est voluptatem quae earum accusantium. Totam dolorem possimus rem!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, nisi.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione modi error rerum possimus animi! Eos!
-            </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam placeat at molestias vitae! Ipsa
-              repudiandae praesentium nobis nesciunt, iusto pariatur tenetur commodi! Iste sequi placeat dolores nulla,
-              expedita voluptas officiis.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, facere iste! Ex quia hic recusandae
-              optio velit ad consectetur totam sed sunt quasi voluptates, sequi molestias alias sapiente iste asperiores
-              nostrum est voluptatem quae earum accusantium. Totam dolorem possimus rem!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, nisi.</p>
+            <?php echo html_entity_decode($post['body']); ?>
           </div>
 
         </div>
       </div>
       <!-- // Main Content -->
 
-     
+      
 
     </div>
     <!-- // Content -->
 
   </div>
+
+
+
+
+
+
+
+
+
   <!-- // Page Wrapper -->
 
-  <?php include(ROOT_PATH . "/app/includes/footer.php");   ?>
+  <?php include(ROOT_PATH . "/app/includes/footer.php"); ?>
 
 
   <!-- JQuery -->

@@ -1,6 +1,7 @@
 <?php include("../../path.php");
 	// include(ROOT_PATH . "/app/database/db.php");
     include(ROOT_PATH . "/app/controllers/users.php");
+    adminOnly();
 
 ?>
 <!DOCTYPE html>

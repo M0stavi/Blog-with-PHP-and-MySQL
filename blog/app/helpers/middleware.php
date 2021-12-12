@@ -1,6 +1,8 @@
 <?php
 
 
+// usersOnly();
+
 function usersOnly($redirect = '/index.php')
 {
     if (empty($_SESSION['id'])) {
@@ -10,6 +12,8 @@ function usersOnly($redirect = '/index.php')
         exit(0);
     }
 }
+
+// adminOnly();
 
 function adminOnly($redirect = '/index.php')
 {
@@ -21,6 +25,8 @@ function adminOnly($redirect = '/index.php')
     }
 }
 
+// guestsOnly();
+
 function guestsOnly($redirect = '/index.php')
 {
     if (isset($_SESSION['id'])) {
@@ -28,3 +34,5 @@ function guestsOnly($redirect = '/index.php')
         exit(0);
     }    
 }
+
+?>

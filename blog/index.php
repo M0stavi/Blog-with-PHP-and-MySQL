@@ -1,6 +1,21 @@
 <?php include("path.php");
 	// include(ROOT_PATH . "/app/database/db.php");
 	include(ROOT_PATH . "/app/controllers/topics.php" );
+	// $posts = getPublishedPosts();
+	// ss($posts);
+
+	$posts = array();
+	$postsTitle = 'Recent Posts';
+
+	if (isset($_GET['t_id'])) {
+		$posts = getPostsByTopicId($_GET['t_id']);
+		$postsTitle = "You searched for posts under '" . $_GET['name'] . "'";
+	} else if (isset($_POST['search-term'])) {
+		$postsTitle = "You searched for '" . $_POST['search-term'] . "'";
+		$posts = searchPosts($_POST['search-term']);
+	} else {
+		$posts = getPublishedPosts();
+	}
 
 ?>
 <!DOCTYPE html>
@@ -37,66 +52,20 @@
 			<i class="fas fa-chevron-right next"></i>
 
 			<div class="post-wrapper">
-				<div class="post">
-					<img src="assets/images/image2.png" alt="" class="slider-image">
-					<div class="post-info">
-						<h4> <a href="single.php">Post One Day</a> </h4>
-						<i class="far fa-user">Writer One</i>
+				<?php foreach ($posts as $post): ?>
+					<div class="post">
+						<img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="" class="slider-image">
+						<div class="post-info">
+						<h4><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h4>
+						<i class="far fa-user"> <?php echo $post['username']; ?></i>
 						&nbsp;
-
-						<i class="far fa-calendar">Nov 25,2021</i>nder
-
+						<i class="far fa-calendar"> <?php echo date('F j, Y', strtotime($post['created_at'])); ?></i>
+						</div>
 					</div>
-				</div>
+				<?php endforeach; ?>
 
 
-				<div class="post">
-					<img src="assets/images/image1.png" alt="" class="slider-image">
-					<div class="post-info">
-						<h4> <a href="single.php">Post Two Day</a> </h4>
-						<i class="far fa-user">Writer Two</i>
-						&nbsp;
-
-						<i class="far fa-calendar">Nov 26,2021</i>nder
-
-					</div>
-				</div>
-
-				<div class="post">
-					<img src="assets/images/image3.png" alt="" class="slider-image">
-					<div class="post-info">
-						<h4> <a href="single.php">Post Three Day</a> </h4>
-						<i class="far fa-user">Writer Three</i>
-						&nbsp;
-
-						<i class="far fa-calendar">Nov 27,2021</i>nder
-
-					</div>
-				</div>
-
-				<div class="post">
-					<img src="assets/images/image4.png" alt="" class="slider-image">
-					<div class="post-info">
-						<h4> <a href="single.php">Post Four Day</a> </h4>
-						<i class="far fa-user">Writer Four</i>
-						&nbsp;
-
-						<i class="far fa-calendar">Nov 28,2021</i>nder
-
-					</div>
-				</div>
-
-				<div class="post">
-					<img src="assets/images/image5.png" alt="" class="slider-image">
-					<div class="post-info">
-						<h4> <a href="single.php">Post Five Day</a> </h4>
-						<i class="far fa-user">Writer Five</i>
-						&nbsp;
-
-						<i class="far fa-calendar">Nov 29,2021</i>nder
-
-					</div>
-				</div>
+				
 				
 			</div>
 
@@ -123,41 +92,23 @@
 	    <!-- Main content      -->
 
 		<div class="main-content">
-			<h1 class="recent-post-title">Recent Posts</h1>
+			<h1 class="recent-post-title"><?php echo $postsTitle ?></h1>
 
-			<div class="post clearfix">
-				<img src="assets/images/image_3.png" alt="" class="post-image">
-				<div class="post-preview">
-					<h2><a href="single.html">Post Title One</a></h2>
-					<i class="far fa-user">User One</i>
-					&nbsp;
-					<i class="far calendar">Nov 25, 2021</i>
+			<?php foreach ($posts as $post): ?>
+				<div class="post clearfix">
+					<img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="" class="post-image">
+					<div class="post-preview">
+					<h2><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h2>
+					<i class="far fa-user"> <?php echo $post['username']; ?></i>
+						&nbsp;
+					<i class="far fa-calendar"> <?php echo date('F j, Y', strtotime($post['created_at'])); ?></i>
 					<p class="preview-text">
-						bla bla bla bla bla bla bla bla bla. bla bla bla bla bla bla bla.
-						bla bla bla bla bla bla. bla bla bla bla bla bla.
-						bla bla bla bla bla bla bla bla bla bla bla bla bla blav bla bla bla bla.
-						bla bla bla bla bla. bla bla bla bla.
+						<?php echo html_entity_decode(substr($post['body'], 0, 150) . '...'); ?>
 					</p>
-					<a href="single.html" class="btn read-more">Read More</a>
-				</div>
-			</div>
-
-			<div class="post clearfix">
-				<img src="assets/images/image_3.png" alt="" class="post-image">
-				<div class="post-preview">
-					<h2><a href="single.html">Post Title One</a></h2>
-					<i class="far fa-user">User One</i>
-					&nbsp;
-					<i class="far calendar">Nov 25, 2021</i>
-					<p class="preview-text">
-						bla bla bla bla bla bla bla bla bla. bla bla bla bla bla bla bla.
-						bla bla bla bla bla bla. bla bla bla bla bla bla.
-						bla bla bla bla bla bla bla bla bla bla bla bla bla blav bla bla bla bla.
-						bla bla bla bla bla. bla bla bla bla.
-					</p>
-					<a href="single.html" class="btn read-more">Read More</a>
-				</div>
-			</div>
+					<a href="single.php?id=<?php echo $post['id']; ?>" class="btn read-more">Read More</a>
+					</div>
+				</div>    
+			<?php endforeach; ?>
 
 
 		</div>
@@ -165,26 +116,24 @@
 
 		<div class="sidebar">
 
-				<div class="section search">
-				<h2 class="section-title">Search</h2>
-				<form action="index.html" method="post">
-					<input type="text" name="search-term" class="text-input" placeholder="Search...">
-				</form>
-				</div>
+			<div class="section search">
+			<h2 class="section-title">Search</h2>
+			<form action="index.php" method="post">
+				<input type="text" name="search-term" class="text-input" placeholder="Search...">
+			</form>
+			</div>
 
 
-				<div class="section topics">
-				<h2 class="section-title">Tags</h2>
-				<ul>
+			<div class="section topics">
+			<h2 class="section-title">Topics</h2>
+			<ul>
 				<?php foreach ($topics as $key => $topic): ?>
-					<tr>
-						<li><a href="#"><?php echo $topic['name']; ?></a></li>
-					</tr> 
+				<li><a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a></li>
 				<?php endforeach; ?>
-				</ul>
-				</div>
+			</ul>
+			</div>
 
-		</div>
+      </div>
 	</div>
 
 
