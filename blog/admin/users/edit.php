@@ -1,5 +1,6 @@
 <?php include("../../path.php");
 	// include(ROOT_PATH . "/app/database/db.php");
+    include(ROOT_PATH . "/app/controllers/users.php");
 
 ?>
 <!DOCTYPE html>
@@ -49,19 +50,43 @@
         <div class="content">
 
             <h2 class="page-title">Add User</h2>
+            <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
 
-            <form action="create.php" method="post">
+            <form action="edit.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $id; ?>" >
                 <div>
-                    <label>Name</label>
-                    <input type="text" name="title" class="text-input">
+                    <label>Username</label>
+                    <input type="text" name="username" value="<?php echo $username; ?>" class="text-input">
                 </div>
                 <div>
-                    <label>Description</label>
-                    <textarea name="description" id="body"></textarea>
+                    <label>Email</label>
+                    <input type="email" name="email" value="<?php echo $email; ?>" class="text-input">
                 </div>
-                
                 <div>
-                   <button type="submit" class="btn btn-big">Update User</button>
+                    <label>Password</label>
+                    <input type="password" name="password" value="<?php echo $password; ?>" class="text-input">
+                </div>
+                <div>
+                    <label>Password Confirmation</label>
+                    <input type="password" name="passwordConf" value="<?php echo $passwordConf; ?>" class="text-input">
+                </div>
+
+                <div>
+                    <?php if (isset($admin) && $admin == 1): ?>
+                        <label>
+                            <input type="checkbox" name="admin" checked>
+                            Admin
+                        </label>
+                    <?php else: ?>
+                        <label>
+                            <input type="checkbox" name="admin">
+                            Admin
+                        </label>
+                    <?php endif; ?>
+                        
+                </div>
+                <div>
+                    <button type="submit" name="update-user" class="btn btn-big">Update user</button>
                 </div>
             </form>
 
