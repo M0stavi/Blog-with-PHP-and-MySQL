@@ -51,32 +51,39 @@
             <h2 class="page-title">Add User</h2>
 
             <form action="create.php" method="post">
-            <div>
-                <label>Email</label>
-                <br>
-                <input type="email" name="email" class="text-input">
-             </div>
-            <div>
-                <label>Password</label>
-                <br>
-                <input type="password" name="password" class="text-input">
-            </div>
-            <div>
-                <label>Confirm</label>
-                <br>
-                <input type="password" name="passwordConf" class="text-input">
-            </div>
+                <div>
+                    <label>Email</label>
+                    <br>
+                    <input type="email" name="email" class="text-input">
+                </div>
+                <div>
+                    <label>Password</label>
+                    <br>
+                    <input type="password" name="password" class="text-input">
+                </div>
+                <div>
+                    <label>Confirm</label>
+                    <br>
+                    <input type="password" name="passwordConf" class="text-input">
+                </div>
 
-            <div>
-                    <label>Role</label>
-                    <select name="role" class="text-input">
-                        <option value="Author">Author</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-            </div>
-                
-            <div>
-                   <button type="submit" class="btn btn-big">Add User</button>
+                <div>
+                    <?php if (isset($admin) && $admin == 1): ?>
+                        <label>
+                            <input type="checkbox" name="admin" checked>
+                            Admin
+                        </label>
+                    <?php else: ?>
+                        <label>
+                            <input type="checkbox" name="admin">
+                            Admin
+                        </label>
+                    <?php endif; ?>
+                        
+                </div>
+                    
+                <div>
+                    <button type="submit" name="create-admin" class="btn btn-big">Add User</button>
                 </div>
             </form>
 
