@@ -113,7 +113,7 @@ if (isset($_POST['update-user']))
   adminOnly();
 
 
-  $errors = validateUser($_POST);
+  $errors = validateUser2($_POST);
 
     if (count($errors) === 0) {
         $id = $_POST['id'];
