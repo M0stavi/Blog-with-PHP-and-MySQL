@@ -30,7 +30,20 @@ function loginUser($user)
      $_SESSION['id'] = $user['id'];
      $_SESSION['username'] = $user['username'];
      $_SESSION['admin'] = $user['admin'];
-     $_SESSION['message'] = 'Logged In';
+    //  $_SESSION['email'] = $user['email'];
+     $name = $user['username'];
+    //  ss($name);
+     if(isset($_COOKIE[$name])){
+      $_SESSION['message'] = 'Logged In, last logged in was' . ' ' . $_COOKIE[$name];
+
+
+     }
+
+     else{
+
+      $_SESSION['message'] = 'Logged In';
+
+     }
  
      $_SESSION['type'] = 'success';
  
