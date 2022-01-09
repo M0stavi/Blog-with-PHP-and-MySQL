@@ -31,7 +31,7 @@ $cookie_name = $_SESSION['username'];
 
 $cookie_value =  date("Y/m/d") . ' ' . date("h:i:sa") ;
 
-setcookie($cookie_name, $cookie_value, time() + 86400, "/");
+setcookie($cookie_name, $cookie_value, time() + 86400);
 
 
 
