@@ -27,11 +27,12 @@ include(ROOT_PATH . "/app/helpers/middleware.php");
 
 $cookie_name = $_SESSION['username'];
 
+date_default_timezone_set("Asia/Dhaka");
 
 
 $cookie_value =  date("Y/m/d") . ' ' . date("h:i:sa") ;
 
-setcookie($cookie_name, $cookie_value, time() + 86400);
+setcookie($cookie_name, $cookie_value, time() + 120);
 
 
 
