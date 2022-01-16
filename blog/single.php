@@ -47,6 +47,7 @@ $posts = selectAll('posts', ['published' => 1]);
           <h1 class="post-title"><?php echo $post['title']; ?></h1>
 
           <div class="post-content">
+            <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="">
             <?php echo html_entity_decode($post['body']); ?>
           </div>
 
