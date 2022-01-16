@@ -14,13 +14,23 @@ require('connect.php');
 
 // var_dump($users);
 
-function ss($value){
+if(!function_exists('ss')) {
+    function ss($value){
 
-    echo "<pre>", print_r($value, true), "</pre>";
-
-    die();
-
+        echo "<pre>", print_r($value, true), "</pre>";
+    
+        die();
+    
+    }
 }
+
+// function ss($value){
+
+//     echo "<pre>", print_r($value, true), "</pre>";
+
+//     die();
+
+// }
 
 function executeQuery($sql,$data){
     global $conn;

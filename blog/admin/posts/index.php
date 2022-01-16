@@ -58,7 +58,7 @@
                 <thead>
                     <th>SN</th>
                     <th>Title</th>
-                    <th>Author</th>
+                    
                     <th colspan = "3">Action</th>
                 </thead>
                 <tbody>
@@ -66,7 +66,7 @@
                     <tr>
                         <td><?php echo $key + 1; ?></td>
                         <td><?php echo $post['title'] ?></td>
-                        <td>Awa</td>
+                        
                         <td><a href="edit.php?id=<?php echo $post['id']; ?>" class="edit">edit</a></td>
                         <td><a href="edit.php?delete_id=<?php echo $post['id']; ?>" class="delete">delete</a></td>
                         <!-- <td><a href="#" class="publish">Publish</a></td> -->

@@ -1,5 +1,5 @@
 <?php include("../path.php"); ?>
-<?php include(ROOT_PATH . "/app/controllers/posts.php"); 
+<?php include(ROOT_PATH . "/app/controllers/contact.php"); 
 adminOnly();
 ?>
 <!DOCTYPE html>
@@ -46,7 +46,40 @@ adminOnly();
 
                     <h2 class="page-title">Dashboard</h2>
 
+
+
+    
+
+
                     <?php include(ROOT_PATH . '/app/includes/messages.php'); ?>
+
+
+
+
+
+
+                            <!-- <?php include(ROOT_PATH . "/app/includes/messages.php"); ?> -->
+                    <table>
+                        <thead>
+                            <th>SN</th>
+                            <th>Email</th>
+                            <th>Message</th>
+                            <!-- <th>Action</th> -->
+                            
+                            <!-- <th colspan = "2">Action</th> -->
+                        </thead>
+                        <tbody>
+                            <?php foreach ($topics as $key => $topic): ?>
+                                    <tr>
+                                            <td><?php echo $key + 1; ?></td>
+                                            <td><?php echo $topic['email']; ?></td>
+                                            <td><?php echo $topic['message']; ?></td>
+                                            <!-- <td><a href="index.php?deleting_id=<?php echo $user['id']; ?>" class="delete">delete</a></td> -->
+                                            
+                                        </tr> 
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
 
                     
 

@@ -1,5 +1,5 @@
 <?php include("path.php"); ?>
-<?php include(ROOT_PATH . '/app/controllers/posts.php');
+<?php include(ROOT_PATH . '/app/controllers/contact.php');
 
 if (isset($_GET['id'])) {
   $post = selectOne('posts', ['id' => $_GET['id']]);
@@ -27,7 +27,7 @@ $posts = selectAll('posts', ['published' => 1]);
   <!-- Custom Styling -->
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <title><?php echo $post['title']; ?> | Blog</title>
+  <title>Contact Us | Blog</title>
 </head>
 
 <body>
@@ -44,10 +44,17 @@ $posts = selectAll('posts', ['published' => 1]);
       <!-- Main Content Wrapper -->
       <div class="main-content-wrapper">
         <div class="main-content single">
-          <h1 class="post-title"><?php echo $post['title']; ?></h1>
+          <h1 class="post-title"><p>Contact</p></h1>
 
           <div class="post-content">
-            <?php echo html_entity_decode($post['body']); ?>
+            <form action="contactus.php" method="post">
+                <input type="email" name="email" class="text-input contact-input" placeholder="Your email address...">
+                <textarea  name="message" class="text-input contact-input" placeholder="Your message..."></textarea>
+                <button type="submit" name="send-msg" class="btn btn-big contact-btn">
+                    <i class="fas fa-envelope"></i>
+                    Send
+                </button>
+            </form>
           </div>
 
         </div>

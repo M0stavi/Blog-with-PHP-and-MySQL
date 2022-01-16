@@ -27,7 +27,7 @@ $posts = selectAll('posts', ['published' => 1]);
   <!-- Custom Styling -->
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <title><?php echo $post['title']; ?> | Blog</title>
+  <title>About Author | Blog</title>
 </head>
 
 <body>
@@ -44,10 +44,13 @@ $posts = selectAll('posts', ['published' => 1]);
       <!-- Main Content Wrapper -->
       <div class="main-content-wrapper">
         <div class="main-content single">
-          <h1 class="post-title"><?php echo $post['title']; ?></h1>
+          <h1 class="post-title"><p>Author</p></h1>
 
           <div class="post-content">
-            <?php echo html_entity_decode($post['body']); ?>
+            <p>
+                Name: S.M. Mostavi Mashkur Mahin <br>
+                Roll: 1707043
+            </p>
           </div>
 
         </div>

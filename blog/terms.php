@@ -27,7 +27,7 @@ $posts = selectAll('posts', ['published' => 1]);
   <!-- Custom Styling -->
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <title><?php echo $post['title']; ?> | Blog</title>
+  <title>Terms | Blog</title>
 </head>
 
 <body>
@@ -44,10 +44,30 @@ $posts = selectAll('posts', ['published' => 1]);
       <!-- Main Content Wrapper -->
       <div class="main-content-wrapper">
         <div class="main-content single">
-          <h1 class="post-title"><?php echo $post['title']; ?></h1>
+          <h1 class="post-title"><p>Terms and Conditions</p></h1>
 
           <div class="post-content">
-            <?php echo html_entity_decode($post['body']); ?>
+            <p>
+                <ul>
+                    <li>Normal users can only view posts</li>
+                    <li>
+                        Admin users can do the following things
+                        <ul>
+                            <li>Create users</li>
+                            <li>Edit users</li>
+                            <li>Delete Users</li>
+                            <li>Create posts</li>
+                            <li>Edit posts</li>
+                            <li>Delete posts</li>
+                            <li>Create Topic</li>
+                            <li>Edit topic</li>
+                            <li>Delete topic</li>
+                        </ul>
+
+                    </li>
+                    <li>Admin users can visit dashboard</li>
+                </ul>
+            </p>
           </div>
 
         </div>

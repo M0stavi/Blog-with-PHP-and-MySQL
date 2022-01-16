@@ -27,7 +27,7 @@ $posts = selectAll('posts', ['published' => 1]);
   <!-- Custom Styling -->
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <title><?php echo $post['title']; ?> | Blog</title>
+  <title>About | Blog</title>
 </head>
 
 <body>
@@ -44,10 +44,10 @@ $posts = selectAll('posts', ['published' => 1]);
       <!-- Main Content Wrapper -->
       <div class="main-content-wrapper">
         <div class="main-content single">
-          <h1 class="post-title"><?php echo $post['title']; ?></h1>
+          <h1 class="post-title"><p>This is the about page</p></h1>
 
           <div class="post-content">
-            <?php echo html_entity_decode($post['body']); ?>
+            <p>This website publishes posts that users can read</p>
           </div>
 
         </div>
