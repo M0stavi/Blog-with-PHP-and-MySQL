@@ -1,0 +1,12 @@
+Use xampp apache web server
+
+
+db name:blog
+
+
+table details:
+
+1.users: id-int11, auto inc; admin-tinyint4; username-varchar255; email-varchar255, unique; password-varchar255; created_at-timestamp, default-current_timestamp().
+2.topics: id-int11, auto_inc; name-varchar255; description-text;
+3.posts: id-int11; user_id-int11(foreign key); topic_id-int11, default-null; title-varchar255, image-varchar255, body-text, punlished-tinyint4, created_at-datetime, current_timestamp();
+4.contact: id-int11, email-varchar255, message-text; 
